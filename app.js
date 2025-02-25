@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Template engine
 app.use(expressLayout);
 app.set('layout', './layouts/main');
+app.set("views", __dirname + "/views");
 app.set('view engine', 'ejs');
 app.use('/', require('./server/routes/main'));
 
