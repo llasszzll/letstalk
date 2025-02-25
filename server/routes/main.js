@@ -7,10 +7,10 @@ const router = express.Router();
 // * GET 
 // * HOME
 
-router.get('', async (req, res) => {
+router.get('/', async (req, res) => {
     const locals = {
         title: "Home",
-        description: "Let's Talk Solution"
+        description: "Let's Talk Solutions"
     }
     try {
         // const data = await Post.find();
