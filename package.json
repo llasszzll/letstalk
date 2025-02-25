@@ -2,15 +2,14 @@
   "name": "letstalk",
   "version": "1.0.0",
   "description": "online",
-  "main": "index.html",
+  "main": "app.js",
   "engines": {
     "node": "22.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "vercel-build": "echo app.js"
+    "dev": "nodemon app.js"
   },
   "author": "Llasszzll Lategan",
   "license": "ISC",

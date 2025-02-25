@@ -7,7 +7,7 @@ const router = express.Router();
 // * GET 
 // * HOME
 
-router.get('/index', async (req, res) => {
+router.get('/', async (req, res) => {
     const locals = {
         title: "Home",
         description: "Let's Talk Solutions"
