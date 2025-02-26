@@ -157,13 +157,13 @@ nav a:hover {
   font-size: 20px;
   position: absolute;
   top: 40%;
-  left: 180px;
+  left: 100px;
   color: #e84310;
   padding: 10px;
 }
 
-.main-body h1,
-h3 {
+.main-body h1 {
+  font-size: 50px;
   -webkit-text-stroke: 1px black;
 }
 
@@ -172,14 +172,16 @@ h3 {
 }
 
 #boxes {
+  display: flex;
   margin-top: 20px;
   align-items: center;
+  justify-content: space-between;
 }
 
 #boxes .box {
   float: left;
   text-align: center;
-  margin: auto;
+  margin: 2px;
   width: 24%;
   padding: 10px;
   border-radius: 5px;
@@ -225,6 +227,10 @@ p {
   text-align: center;
   background: #ddd;
   font-weight: bold;
+}
+
+.footer p {
+  color: #e84310;
 }
 
 .footreg {
@@ -320,10 +326,17 @@ input[type="submit"]:hover {
     text-align: center;
     font-size: 10px;
     position: absolute;
-    top: 20%;
+    top: 40%;
     left: 1%;
     color: #e84310;
     padding: 10px;
+  }
+  .main-body h1 {
+    font-size: 30px;
+  }
+
+  .main-body h3 {
+    color: var(--orange);
   }
   .main-container img {
     width: 100%;
