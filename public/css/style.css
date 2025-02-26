@@ -29,10 +29,12 @@ body {
   margin: 0 0;
   text-align: center;
   align-items: center;
+  height: 100%;
 }
 
 .container img {
   width: 100%;
+  display: inline-flexbox;
 }
 
 /* TOP NAV */
@@ -177,11 +179,14 @@ h3 {
 #boxes .box {
   float: left;
   text-align: center;
+  margin: auto;
   width: 24%;
   padding: 10px;
-  border: 2px solid var(--orange);
   border-radius: 5px;
   flex-wrap: wrap;
+  background-color: #e84310;
+  border: 2px solid black;
+  color: white;
 }
 
 #boxes .box h3 {
@@ -194,6 +199,24 @@ h3 {
 
 #boxes .box img {
   width: 100px;
+  color: white;
+}
+
+.secondsec {
+  display: inline-flexbox;
+}
+
+.blog h2 {
+  text-align: center;
+  margin-top: 10vh;
+  margin-bottom: 50vh;
+}
+
+/* SERVICES */
+.text_2,
+p {
+  margin-top: 20px;
+  padding: 20px 50px;
 }
 
 /* Footer */
