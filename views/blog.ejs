@@ -1,3 +1,21 @@
-<div class="blog">
-    <h2>Blog on its way soon soon...</h2>
-</div>
+<section class="articles">
+    <h2 class="articles__heading">Blog Posts</h2>
+    <ul class="article-ul">
+        <% data.forEach(post=> { %>
+            <li>
+                <a href="/post/<%= post._id %>">
+                    <span>
+                        <%= post.title %>
+                    </span>
+                    <span class="article-list__date">
+                        <%= post.createdAt.toDateString() %>
+                    </span>
+                </a>
+            </li>
+            <% }) %>
+    </ul>
+
+    <% if (nextPage !==null) { %>
+        <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Previous</a>
+        <% } %>
+</section>

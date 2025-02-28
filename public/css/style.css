@@ -214,6 +214,40 @@ nav a:hover {
   margin-bottom: 50vh;
 }
 
+/* BLOG */
+.articles {
+  margin-top: 4rem;
+  font-weight: 400;
+}
+
+.articles-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.article-list__date {
+  font-size: var(--font-size-base);
+  color: var(--gray);
+  width: 260px;
+  display: inline-block;
+}
+
+.article-ul li a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  margin: 18px;
+}
+
+.pagination {
+  margin-bottom: 10px;
+}
+
 /* SERVICES */
 .text_2,
 p {
@@ -350,5 +384,13 @@ input[type="submit"]:hover {
     float: none;
     text-align: center;
     width: 100%;
+  }
+
+  .article-ul li a {
+    flex-direction: row;
+    align-items: center;
+  }
+  .article-list__date {
+    text-align: right;
   }
 }
