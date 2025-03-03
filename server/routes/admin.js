@@ -11,6 +11,24 @@ const jwtSecret = process.env.JWT_SECRET;
 
 
 // GET
+// Admin / Check Login
+
+const authMiddleware = (req, res, next) => {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    try {
+        const decoded = jwt.verify(token, jwtSecret);
+        req.userId = decoded.userId;
+        next();
+    } catch (error) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+}
+
+// GET
 // Admin / Login Page
 
 router.get('/admin', async (req, res) => {
@@ -51,6 +69,130 @@ router.post('/admin', async (req, res) => {
         res.redirect('/dashboard');
 
 
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+// GET
+// Admin / Dashboard
+router.get('/dashboard', authMiddleware, async (req, res) => {
+    try {
+        const locals = {
+            title: 'Dashboard',
+            description: 'LTS Admin Dashboard'
+        }
+
+        const data = await Post.find();
+        res.render('admin/dashboard', {
+            locals,
+            data,
+            layout: adminLayout
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+// GET
+// Admin / Create New Post
+router.get('/add-post', authMiddleware, async (req, res) => {
+    try {
+        const locals = {
+            title: 'Add Post',
+            description: 'LTS Admin Dashboard'
+        }
+
+        const data = await Post.find();
+        res.render('admin/add-post', {
+            locals,
+            layout: adminLayout
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+// POST
+// Admin / Add-POST
+router.post('/add-post', authMiddleware, async (req, res) => {
+    try {
+        try {
+            const newPost = new Post({
+                title: req.body.title,
+                body: req.body.body
+            })
+
+            await Post.create(newPost);
+            res.redirect('/dashboard');
+        } catch (error) {
+            console.log(error);
+        }
+
+    } catch (error) {
+        console.log(error);
+
+    }
+})
+
+// POST
+// Admin / EDIT-POST
+router.post('/edit-post', authMiddleware, async (req, res) => {
+    try {
+        try {
+            const newPost = new Post({
+                title: req.body.title,
+                body: req.body.body
+            })
+
+            await Post.create(newPost);
+            res.redirect('/dashboard');
+        } catch (error) {
+            console.log(error);
+        }
+
+    } catch (error) {
+        console.log(error);
+
+    }
+})
+
+// PUT = UPDATE
+// Admin / EDIT-POST
+router.get('/edit-post/:id', authMiddleware, async (req, res) => {
+    try {
+        const locals = {
+            title: 'Edit Post',
+            description: 'LTS Admin Dashboard',
+        }
+        const data = await Post.findOne({ _id: req.params.id });
+
+        res.render('admin/edit-post', {
+            locals,
+            data,
+            layout: adminLayout
+        })
+    }
+    catch (error) {
+        console.log(error);
+    }
+})
+
+// PUT New Record
+// Admin / EDIT-POST
+router.put('/edit-post/:id', authMiddleware, async (req, res) => {
+    try {
+
+        await Post.findByIdAndUpdate(req.params.id, {
+            title: req.body.title,
+            body: req.body.body,
+            updatedAt: Date.now(),
+        })
+
+        res.redirect(`/edit-post/${req.params.id}`);
+        alert('Record Updated')
     } catch (error) {
         console.log(error);
     }
@@ -101,6 +243,26 @@ router.post('/register', async (req, res) => {
 //     }
 // })
 
+// DELETE Record
+// Admin / DELETE-POST
+router.delete('/delete-post/:id', authMiddleware, async (req, res) => {
+    try {
+        await Post.deleteOne({ _id: req.params.id });
+
+        res.redirect('/dashboard');
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+// GET
+// Admin Logout
+router.get('/logout', (req, res) => {
+    res.clearCookie('token');
+    // res.json({ message: 'Log out Successful!' });
+    res.redirect('/');
+})
 
 
 module.exports = router;

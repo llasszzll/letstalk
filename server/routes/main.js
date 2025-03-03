@@ -39,7 +39,13 @@ router.get('/blog', async (req, res) => {
         const nextPage = parseInt(page) + 1;
         const hasNextPage = nextPage <= Math.ceil(count / perPage);
 
-        res.render('blog', { locals, data, current: page, nextPage: hasNextPage ? nextPage : null });
+        res.render('blog', {
+            locals,
+            data,
+            current: page,
+            nextPage: hasNextPage ? nextPage : null,
+            isActiveRoute: '/'
+        });
     } catch (error) {
         console.log(error);
     }
@@ -53,7 +59,8 @@ router.get('/post/:id', async (req, res) => {
         const data = await Post.findById({ _id: slug })
         const locals = {
             title: data.title,
-            description: "Blog Post"
+            description: "Blog Post",
+            currentRoute: `/post/${slug}`
 
         }
         res.render('post', { locals, data })
@@ -64,16 +71,22 @@ router.get('/post/:id', async (req, res) => {
 });
 
 router.get('/about', (req, res) => {
-    res.render('about');
+    res.render('about', {
+        currentRoute: '/about'
+    });
 });
 
 
 router.get('/service', (req, res) => {
-    res.render('service');
+    res.render('service', {
+        currentRoute: '/service'
+    });
 });
 
 router.get('/contact', (req, res) => {
-    res.render('contact');
+    res.render('contact', {
+        currentRoute: '/contact'
+    });
 });
 
 module.exports = router;

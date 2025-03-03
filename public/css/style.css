@@ -320,6 +320,10 @@ input[type="submit"]:hover {
   text-align: left;
 }
 
+.header__nav ul a.active {
+  color: #7e7e7e;
+}
+
 .contact-main {
   padding-top: 30px;
   text-align: center;
@@ -393,4 +397,37 @@ input[type="submit"]:hover {
   .article-list__date {
     text-align: right;
   }
+}
+
+/* Dashboard Admin */
+.admin-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-posts {
+  padding: 0;
+  margin: 0;
+}
+
+.admin-post-controls form {
+  display: inline-block;
+}
+
+.admin-post-controls .btn {
+  display: inline-block;
+  background-color: var(--black);
+  color: var(--gray-light);
+  border: 0;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 4px 8px;
+  line-height: 2;
+}
+
+.admin-posts li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
 }
